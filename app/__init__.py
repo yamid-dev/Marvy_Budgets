@@ -7,8 +7,9 @@ bcrypt = Bcrypt()
 def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:nidian56@localhost/presupuesto_2'
     bcrypt.init_app(app)
-
+    db.init_app(app)
     from .routes import usuario_bp, ingresos_bp, egresos_bp, compras_bp
     app.register_blueprint(usuario_bp)
     app.register_blueprint(ingresos_bp)

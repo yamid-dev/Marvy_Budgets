@@ -9,10 +9,12 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 </head>
 <body>
-   
    <div class="container" id="container">        
         {% block container %}{% endblock %}
-   </div>
+        <footer>
+            <p>Marvy Systems</p>
+       </footer>
+    </div>
    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

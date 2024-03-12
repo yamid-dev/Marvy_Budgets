@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome{% endblock %}
+
+{% block container %}
+    
+    <div class="mensaje" id="mensaje">
+        <p id="contenidoMensaje">{{mensaje}}</p>
+    </div>
+    <div id="signup" class="signup">
+        <form id="registro" method="POST" action="/registrarse" enctype="multipart/form-data">
+            <h1>Nuevo usuario</h1>
+            <div>
+                <label for="new-user">Usuario: </label>
+                <div><input type="new-user" name="new-user" id="new-user" class="new-user"></div>
+            </div>
+            <div>
+                <label for="new-password">Contraseña: </label>
+                <div><input type="password" name="new-password" id="new-password" class="new-password"></div>
+            </div>
+            <div>
+                <label for="profile-image">Imagen de perfil: </label>
+                <div><input type="file" name="profile-image" id="profile-image"></div>
+            </div>
+        </form>
+        <div>
+            <div><button id="btn-signup" onclick="enviar('registro','btn-signup')">Registrarse</button></div>
+            <div><a href="/login"><button>Cancelar</button></a></div>
+        </div>
+    </div>
+{% endblock %}
