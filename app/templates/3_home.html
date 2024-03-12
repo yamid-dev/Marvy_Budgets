@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome{% endblock %}
+
+{% block container %}
+    {% if form == "ingresos" %}
+        <div class="forms" id="form-ingresos">
+            <form id="ingreso" action="/ingresos" method="POST" style="background: green; color: #fcfcfc">
+                <h3>Formulario de ingresos</h3>
+                <div><label for="ingreso_Id">Id: </label></div>
+                <input type="number" id="ingreso_Id" name="ingreso_Id" class="ingreso_Id" placeholder="Identificación">
+                <div><label for="ingreso_Detalle">Detalles: </label></div>
+                <input type="text" id="ingreso_Detalle" name="ingreso_Detalle" class="ingreso_Detalle" placeholder="Detalles del ingreso...">
+                <div><label for="ingreso_Tipo">Tipo:</label></div>
+                <select id="ingreso_Tipo" name="ingreso_Tipo">
+                    <option value="">---</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="freelacner">Freelancer</option>
+                    <option value="empleo">Empleo</option>
+                    <option value="familia">Familia</option>
+                    <option value="regalo">Regalo</option>
+                </select>
+                <div><label for="ingreso_Cantidad">Cantidad: </label></div>
+                <input type="number" id="ingreso_Cantidad" class="ingreso_Cantidad" name="ingreso_Cantidad" placeholder="Cantidad">
+                <div><label for="ingreso_Precio">Precio: </label></div>
+                <input type="number" id="ingreso_Precio" class="ingreso_Precio" name="ingreso_Precio" placeholder="Precio">
+                <div><label for="ingreso_Fecha">Fecha: </label></div>
+                <input type="date" id="ingreso_Fecha" class="ingreso_Fecha" name="ingreso_Fecha" placeholder="Fecha">
+            </form>          
+            <div id="btns-home" class="btns">
+                <button id="btn-ingreso" onclick="enviar('ingreso','btn-ingreso')">Registrar</button>
+                <a href="/home"><button>cancelar</button></a>
+            </div>
+        </div>
+    {% elif form == "egresos" %}
+        <div class="forms" id="form-egresos">
+            <form id="egreso" action="/egresos" method="POST" style="background: red; color: #fcfcfc">
+                <h3>Formulario de Egresos</h3>
+                <div><label for="egreso_Id">Id: </label></div>
+                <input type="number" id="egreso_Id" name="egreso_Id" class="egreso_Id" placeholder="Identificación">
+                <div><label for="egreso_Detalle">Detalles: </label></div>
+                <input type="text" id="egreso_Detalle" name="egreso_Detalle" class="egreso_Detalle" placeholder="Detalles del egreso...">
+                <div><label for="egreso_Tipo">Tipo:</label></div>
+                <select id="egreso_Tipo" name="egreso_Tipo">
+                    <option value="">---</option>
+                    <option value="consulta">Comida</option>
+                    <option value="freelacner">Ropa</option>
+                    <option value="empleo">Ocio</option>
+                    <option value="familia">Vicio</option>
+                    <option value="regalo">Tecnología</option>
+                    <option value="regalo">Escuela</option>
+                </select>
+                <div><label for="egreso_Cantidad">Cantidad: </label></div>
+                <input type="number" id="egreso_Cantidad" class="egreso_Cantidad" name="egreso_Cantidad" placeholder="Cantidad">
+                <div><label for="egreso_Precio">Precio: </label></div>
+                <input type="number" id="egreso_Precio" class="egreso_Precio" name="egreso_Precio" placeholder="Precio">
+                <div><label for="egreso_Fecha">Fecha: </label></div>
+                <input type="date" id="egreso_Fecha" class="egreso_Fecha" name="egreso_Fecha" placeholder="Fecha">
+            </form>          
+            <div id="btns-home" class="btns">
+                <button id="btn-egreso" onclick="enviar('egreso','btn-egreso')">Registrar</button>
+                <a href="/home"><button>cancelar</button></a>
+            </div>  
+        </div>
+    {% elif form == "compras" %}
+        <div class="forms" id="form-compras">
+            <form id="compra" action="/compras" method="POST" style="background: blue; color: #fcfcfc">
+                <h3>Formulario de compras</h3>
+                <div><label for="compra_Id">Id: </label></div>
+                <input type="number" id="compra_Id" name="compra_Id" class="compra_Id" placeholder="Identificación">
+                <div><label for="compra_Detalle">Detalles: </label></div>
+                <input type="text" id="compra_Detalle" name="compra_Detalle" class="compra_Detalle" placeholder="Detalles de la compra...">
+                <div><label for="compra_Tipo">Tipo:</label></div>
+                <select id="compra_Tipo" name="compra_Tipo">
+                    <option value="">---</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="freelacner">Freelancer</option>
+                    <option value="empleo">Empleo</option>
+                    <option value="familia">Familia</option>
+                    <option value="regalo">Regalo</option>
+                </select>
+                <div><label for="compra_Cantidad">Cantidad: </label></div>
+                <input type="number" id="compra_Cantidad" class="compra_Cantidad" name="compra_Cantidad" placeholder="Cantidad">
+                <div><label for="compra_Precio">Precio: </label></div>
+                <input type="number" id="compra_Precio" class="compra_Precio" name="compra_Precio" placeholder="Precio">
+                <div><label for="compra_Fecha">Fecha: </label></div>
+                <input type="date" id="compra_Fecha" class="compra_Fecha" name="compra_Fecha" placeholder="Fecha">
+            </form>          
+            <div id="btns-home" class="btns">
+                <button id="btn-compra" onclick="enviar('compra','btn-compra')">Registrar</button>
+                <a href="/home"><button>cancelar</button></a>
+            </div>    
+        </div>
+    {% else %}
+        <div></div>
+    {% endif %}
+    <div class="mensaje" id="mensaje">
+        <p id="contenidoMensaje">{{mensaje}}</p>
+    </div>
+    <div id="home" class="home">
+        <header>
+            <i onclick="abrir()" class="fa-solid fa-bars"></i>
+            <p>Marvy Budgets</p>
+        </header>
+        <div id="menu-desplegable" class="menu-desplegable">
+            <div id="cerrar" class="cerrar" onclick="cerrar()"><i class="fa-solid fa-circle-xmark" style="font-size: 1.2rem;"></i></div>
+            <div><h2>Menú</h2></div>
+            <div class="image-profile" id="image-profile">
+                <img src="data:image/png;base64,{{ user.imagen }}" width="45%" style="border-radius: 50%;" alt="Imagen de perfil">
+            </div>
+            <div class="username" id="username">
+                <p>{{user.id}}</p>
+            </div>
+            <div>
+                <p class="total" id="total">Total: $-------</p>
+            </div>
+            <div>
+                <ul class="menu" id="menu">
+                    <a href="/ingresos"><li><p><i class="fa-solid fa-money-bill" style="color: green;"></i> Registrar ingreso</p></li></a>
+                    <a href="/egresos"><li><p><i class="fa-solid fa-money-bill-wave" style="color: red;"></i> Registrar egreso</p></li></a>
+                    <a href="/compras"><li><p><i class="fa-solid fa-cart-shopping" style="color: #1c53a6;"></i> Registrar compra</p></li></a>
+                </ul>
+            </div>
+            <div>
+                <div class="btns" id="btns"><i class="fa-solid fa-gear"></i><a id="salir" href="/cerrar-sesion"> Salir <i class="fa-solid fa-door-open" style="color: #fff"></i></a></div>
+            </div>
+        </div>
+        <div class="ingresos" id="ingresos">
+            <h2>Ingresos</h2>
+        </div>
+        <div class="egresos" id="egresos">
+            <h2>Egresos</h2>
+            {% for egre in egreso %}
+                <div class="registro-egreso" id="registro-egreso">
+                    <p>{{egre.id}}</p>
+                    <p>{{egre.detalle}}</p>
+                    <p>{{egre.tipo}}</p>
+                    <p>{{egre.precio}}</p>
+                    <p>{{egre.cantidad}}</p>
+                    <p>{{egre.fecha}}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="compras" id="compras">
+            <h2>Compras</h2>
+        </div>
+    </div>
+{% endblock %}

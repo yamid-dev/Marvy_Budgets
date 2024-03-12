@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %} | Marvy Budgets</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <script src="https://kit.fontawesome.com/8786a88843.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+</head>
+<body>
+   <div class="container" id="container">        
+        {% block container %}{% endblock %}
+        <footer>
+            <p>Marvy Systems</p>
+       </footer>
+    </div>
+   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',Arial, Helvetica, sans-serif;
+}
+/*width 100% height 100%*/
+body, html, .container{
+  width: 100%;
+  height: 100%;  
+  background: rgb(63, 63, 63);
+  color: white;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.forms{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.80);
+}
+.forms form{
+    width: 30%;
+    height: auto;
+    overflow: auto; 
+    padding: 2%;
+}
+input, button{
+    margin-bottom: 2%;
+}
+#btns-home{
+    background: #fcfcfc;
+    width: 30%;
+    padding: 2%;
+}
+/*display flex en columna centrado flex*/
+#welcome, #login, #signup, #mensaje,#contenidoMensaje, #login form, #signup form, #image-profile, #username, #total, #cerrar, #signout, .forms, .forms form, #btns-home,#registro-egreso{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+/*alineacion de texto central*/
+footer, #home h2{
+    text-align: center;
+    width: 100%;
+}
+
+/*padding: 5%*/
+#image-profile,#username,#login form, #signup form, #menu li, #total,#btns, #signout{
+    padding: 5%;
+}
+header{
+    grid-column: 1/-1;
+    grid-row: 1;
+    padding: 1%;
+    height: auto;
+    position: block;  
+    background-color: #454545;
+    color: white;
+}
+footer{
+    grid-column: 1/-1;
+    grid-row: -1;
+    padding: 1%;
+    position: block;
+}
+
+.container{
+    display: grid;
+    overflow: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 10% 1fr 1fr 1fr;
+}
+#menu-desplegable #ingresos #egresos #compras{
+    grid-row: 2/5;
+    height: 100vh;
+    overflow: scroll;
+}
+#menu-desplegable::-webkit-scrollbar, #egresos::-webkit-scrollbar {
+    width: 10px;
+    background-color: #313131;
+} 
+#welcome, #mensaje, #home{
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+}
+#login,#signup{
+    background: white;
+    color: black;
+    width: 100%;
+    height: auto;
+    grid-row: 2/4;
+    grid-column: 2/4;
+}
+#signout{
+    grid-row: 3;
+    grid-column: 2/4;
+}
+#login form, #signup form{
+    background: #ffffff;
+    width: 100%;
+}
+#mensaje{
+    background: #000000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#contenidoMensaje{
+    background: #f0f0f0;
+    width: 30%;
+    height: 30%;
+}
+#home{
+    display: grid;
+    background: #f0f0f0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: black;
+}
+#home div{
+    overflow: auto;
+    background: #262626;
+    color: #ffffff;
+}
+/* 
+#home div:nth-child(even){
+    background: #545454;
+    color: white;
+}
+#home div:nth-child(odd){
+    background: #262626;
+    color: white;
+} */
+#home div:nth-last-of-type(4){
+    border-right:1px solid #040404;
+}
+#home div #image-profile, #home div #username{
+    border: none;   
+}
+#cerrar{
+    padding: 2%; 
+}
+#menu a{
+    text-decoration: none;
+    color: #fff;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+/*cursor pointer*/
+#menu li, #btns i,.fa-circle-xmark, .fa-bars{
+    cursor: pointer;
+}
+.fa-circle-xmark:hover{
+    color: red;
+}
+#menu a:hover:nth-last-of-type(3) {
+    background-color: green;
+}
+
+#menu a:hover:nth-last-of-type(2){
+    background-color: red;
+}
+#menu a:hover:nth-last-of-type(1){
+    background-color: #1c53a6;
+}
+/*color white hover*/
+#menu li i:hover:nth-last-of-type(3),#menu li i:hover:nth-last-of-type(2),#menu li i:hover:nth-last-of-type(1),#menu li:hover:nth-last-of-type(3),#menu li:hover:nth-last-of-type(2),#menu li:hover:nth-last-of-type(1){
+    color: white;
+}
+#btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+p{
+    font-size: 0.9rem;
+}
+
+h2{
+    font-size: 1.2rem;
+}
+.egresos #registro-egreso:hover{
+    background: red;
+}
+#salir{
+    text-decoration: none;
+    color: white;
+}
+#salir:hover{
+    color: red
+}

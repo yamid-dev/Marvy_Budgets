@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome{% endblock %}
+
+{% block container %}
+    <div id="welcome" class="welcome">
+        <h1 id="loader" class="loader"></h1>
+    </div>
+    <script>
+        
+        //Loader
+        let contador = 0;
+        const loader = document.getElementById('loader')
+        function actualizarLoader() {
+            loader.innerText = "Cargando" + ".".repeat(contador % 4);  //Repetir puntos (.) hasta 4 y luego reiniciar
+            contador++;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            intervalID = setInterval(actualizarLoader, 500);
+            loader.innerText = "Cargando";  //Mostrar "Cargando" inicialmente
+        });
+
+        //Redirección de welcome a login
+        function redirectTo(url,tiempo){
+            setTimeout(function(){
+                window.location.href= url;
+            }, tiempo);
+        }
+
+        redirectTo('/login',4000);
+    </script>
+{% endblock %}
