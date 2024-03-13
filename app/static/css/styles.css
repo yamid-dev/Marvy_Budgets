@@ -10,7 +10,7 @@
 body, html, .container{
   width: 100%;
   height: 100%;  
-  background: rgb(63, 63, 63);
+  background: #3f3f3f;
   color: white;
 }
 header{
@@ -51,6 +51,7 @@ input, button{
 footer, #home h2{
     text-align: center;
     width: 100%;
+    height: auto;
 }
 
 /*padding: 5%*/
@@ -63,26 +64,25 @@ header{
     padding: 1%;
     height: auto;
     position: block;  
-    background-color: #454545;
+    background-color: #161616;
     color: white;
 }
 footer{
     grid-column: 1/-1;
-    grid-row: -1;
-    padding: 1%;
+    padding: 0.5%;
     position: block;
+    background: #161616;
 }
 
 .container{
     display: grid;
     overflow: auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 10% 1fr 1fr 1fr;
+    grid-template-rows: 4% 1fr 1fr 5%;
 }
-#menu-desplegable #ingresos #egresos #compras{
-    grid-row: 2/5;
-    height: 100vh;
-    overflow: scroll;
+#menu-desplegable, #ingresos ,#egresos, #compras{
+    margin: 2.5%;
+    padding: 3% 0;
 }
 #menu-desplegable::-webkit-scrollbar, #egresos::-webkit-scrollbar {
     width: 10px;
@@ -123,7 +123,7 @@ footer{
 }
 #home{
     display: grid;
-    background: #f0f0f0;
+    background: #161616;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     color: black;
 }
@@ -131,6 +131,64 @@ footer{
     overflow: auto;
     background: #262626;
     color: #ffffff;
+}
+#home .egresos div{
+    overflow: auto;
+    background: #a70e0e;
+    color: #ffffff;
+    margin: 2.5% 1.5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1%;
+    padding-left: 3%;
+    justify-items: left;
+    align-items: center;
+    justify-content: left;
+    cursor: pointer;
+}
+#home .compras div{
+    overflow: auto;
+    background: blue;
+    color: #ffffff;
+    margin: 2.5% 1.5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1%;
+    padding-left: 3%;
+    justify-items: left;
+    align-items: center;
+    justify-content: left;
+    cursor:pointer;
+}
+#home .ingresos div{
+    overflow: auto;
+    background: green;
+    color: #ffffff;
+    margin: 2.5% 1.5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1%;
+    padding-left: 3%;
+    justify-items: left;
+    align-items: center;
+    justify-content: left;
+    cursor: pointer;
+}
+#home .menu-desplegable,#home .menu-desplegable div{
+    overflow: auto;
+    background: #262626;
+}
+#home .menu-desplegable .menu, #home .menu-desplegable .image-profile{
+    background: #0f0f0f;
+}
+#home .egresos div p,#home .ingresos div p,#home .compras div p{
+    padding: 1%;
+    font-size: 0.8rem;
+}
+#home .egresos div:hover, #home .compras div:hover, #home .ingresos div:hover{
+    background: #4b4b4b;
+    color: #fff;
+    
 }
 /* 
 #home div:nth-child(even){
@@ -141,9 +199,7 @@ footer{
     background: #262626;
     color: white;
 } */
-#home div:nth-last-of-type(4){
-    border-right:1px solid #040404;
-}
+
 #home div #image-profile, #home div #username{
     border: none;   
 }

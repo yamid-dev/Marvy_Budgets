@@ -22,13 +22,15 @@ def obtener_compra(user_id):
         compras = Compra.query.filter_by(usuario_user_Id=user_id).all()
         lista_compras = []
         for compra in compras:
+            # Formatear el campo compra_Total con comas para separador de miles
+            total_formateado = "{:,}".format(int(compra.compra_Total))
             info_compra = {
                 'id': compra.compra_Id,
                 'detalle': compra.compra_Detalle,
-                'precio': compra.compra_Precio,
+                'precio': "{:,}".format(int(compra.compra_Precio)),
                 'tipo': compra.compra_Tipo,
                 'cantidad': compra.compra_Cantidad,
-                'total': compra.compra_Total,
+                'total': total_formateado,
                 'fecha': compra.compra_Fecha,
             }
             lista_compras.append(info_compra)
@@ -46,10 +48,10 @@ def obtener_ingreso(user_id):
             info_ingreso = {
                 'id': ingreso.ingreso_Id,
                 'detalle': ingreso.ingreso_Detalle,
-                'precio': ingreso.ingreso_Precio,
+                'precio': "{:,}".format(int(ingreso.ingreso_Precio)),
                 'tipo': ingreso.ingreso_Tipo,
                 'cantidad': ingreso.ingreso_Cantidad,
-                'total': ingreso.ingreso_Total,
+                'total': "{:,}".format(int(ingreso.ingreso_Total)),
                 'fecha': ingreso.ingreso_Fecha,
             }
             lista_ingresos.append(info_ingreso)
@@ -67,10 +69,10 @@ def obtener_egreso(user_id):
             info_egreso = {
                 'id': egreso.egreso_Id,
                 'detalle': egreso.egreso_Detalle,
-                'precio': egreso.egreso_Precio,
+                'precio': "{:,}".format(int(egreso.egreso_Precio)),
                 'tipo': egreso.egreso_Tipo,
                 'cantidad': egreso.egreso_Cantidad,
-                'total': egreso.egreso_Total,
+                'total': "{:,}".format(int(egreso.egreso_Total)),
                 'fecha': egreso.egreso_Fecha,
             }
             lista_egresos.append(info_egreso)

@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 import locale
 from .helpers import obtener_user, obtener_egreso, obtener_ingreso, obtener_compra
-from . import bcrypt
-from .models import Usuario, Ingreso, Egreso, Compra
+from . import bcrypt 
+from .models import Usuario, Ingreso, Egreso, Compra, Vista_total_egresos, Vista_total_ingresos
 from app import db
 
 locale.setlocale(locale.LC_ALL,'')
@@ -83,7 +83,27 @@ def home():
         datos = obtener_egreso(user_id)
         datosDos= obtener_ingreso(user_id)
         datosTres= obtener_compra(user_id)
-        return render_template('3_home.html',user=info_user, egreso=datos, ingresos=datosDos, compras=datosTres)
+        total_egresos = db.session.query(Vista_total_egresos).first().total_egresos
+        #"{:,}".format(int(db.session.query(Vista_total_egresos).first().total_egresos))
+        total_ingresos = db.session.query(Vista_total_ingresos).first().total_ingresos
+        #"{:,}".format(int(db.session.query(Vista_total_ingresos).first().total_ingresos))
+        presupuesto = "{:,}".format(int(total_ingresos-total_egresos))
+
+        # Verificar si hay datos disponibles, si no, enviar listas vacías
+        if not datos:
+            datos = []
+        if not datosDos:
+            datosDos = []
+        if not datosTres:
+            datosTres = []
+        if not total_egresos:
+            total_egresos="----"
+        if not total_ingresos:
+            total_ingresos="----"
+        if not total_ingresos:
+            presupuesto="----"
+
+        return render_template('3_home.html',user=info_user, egresos=datos, ingresos=datosDos, compras=datosTres,  total_egresos=total_egresos, total_ingresos=total_ingresos, presupuesto=presupuesto)
     else:
         estado=False
         mensaje="Primero debes iniciar sesión"
@@ -124,7 +144,7 @@ def ingresos():
                 )
                 db.session.add(new_Ingreso)
                 db.session.commit()
-                return render_template('3_home.html')
+                return redirect(url_for('usuario.home', user=user_id))
         else:
             info_user= obtener_user(user_id)
             form="ingresos"
@@ -163,7 +183,7 @@ def egresos():
                 )
                 db.session.add(new_Egreso)
                 db.session.commit()
-                return redirect(url_for('usuario.homeDos', user=user_id))
+                return redirect(url_for('usuario.home', user=user_id))
         else:
             info_user= obtener_user(user_id)
             form="egresos"
@@ -181,7 +201,7 @@ def compras():
             id= request.form['compra_Id']
             tipo= request.form.get('compra_Tipo')
             cantidad= request.form['compra_Cantidad']
-            detalle=request.form['ingreso_Detalle']
+            detalle=request.form['compra_Detalle']
             precio= request.form['compra_Precio']
             fecha= request.form['compra_Fecha']
             exist_compra =  Compra.query.filter(Compra.compra_Id == int(id)).first()
@@ -190,7 +210,7 @@ def compras():
                 form="compras"
                 return render_template('3_home.html', form=form)
             else:
-                new_Compra= Ingreso(
+                new_Compra= Compra(
                     compra_Id = int(id),
                     compra_Tipo= tipo,
                     compra_Cantidad= cantidad,
@@ -201,7 +221,7 @@ def compras():
                 )
                 db.session.add(new_Compra)
                 db.session.commit()
-                return render_template('3_home.html')
+                return redirect(url_for('usuario.home', user=user_id))
         else:
             info_user= obtener_user(user_id)
             form="compras"

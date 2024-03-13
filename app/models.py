@@ -3,13 +3,23 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
-
+class Vista_total_ingresos(db.Model):
+    __table__ = db.Table(
+        'vista_total_ingresos',
+        db.metadata,
+        db.Column('total_ingresos', db.Float, primary_key=True)
+    )
+class Vista_total_egresos(db.Model):
+    __table__ = db.Table(
+        'vista_total_egresos',
+        db.metadata,
+        db.Column('total_egresos', db.Float, primary_key=True)
+    )
 class Usuario(db.Model):
     __tablename__ = 'usuario'
     user_Id = db.Column(db.String(65), primary_key=True)
     user_Password = db.Column(db.String(255))
     user_Img = db.Column(db.LargeBinary)
-
 class Ingreso(db.Model):
     __tablename__ = 'ingreso'
     ingreso_Id = db.Column(db.Integer, primary_key=True)
@@ -43,6 +53,3 @@ class Compra(db.Model):
     compra_Total = db.Column(db.Float, db.Computed('(compra_Precio * compra_Cantidad)'))
     compra_Check= db.Column(db.Integer)
     usuario_user_Id = db.Column(db.Integer, db.ForeignKey('usuario.user_Id'))
-
-    def __init__(self, compra_Check):
-        self.compra_Check = compra_Check

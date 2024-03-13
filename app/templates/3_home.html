@@ -15,7 +15,7 @@
                 <select id="ingreso_Tipo" name="ingreso_Tipo">
                     <option value="">---</option>
                     <option value="consulta">Consulta</option>
-                    <option value="freelacner">Freelancer</option>
+                    <option value="freelancer">Freelancer</option>
                     <option value="empleo">Empleo</option>
                     <option value="familia">Familia</option>
                     <option value="regalo">Regalo</option>
@@ -43,12 +43,11 @@
                 <div><label for="egreso_Tipo">Tipo:</label></div>
                 <select id="egreso_Tipo" name="egreso_Tipo">
                     <option value="">---</option>
-                    <option value="consulta">Comida</option>
-                    <option value="freelacner">Ropa</option>
-                    <option value="empleo">Ocio</option>
-                    <option value="familia">Vicio</option>
-                    <option value="regalo">Tecnología</option>
-                    <option value="regalo">Escuela</option>
+                    <option value="comida">Comida</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="transporte">Transporte</option>
+                    <option value="tecnología">Tecnología</option>
+                    <option value="diversión">Diversión</option>
                 </select>
                 <div><label for="egreso_Cantidad">Cantidad: </label></div>
                 <input type="number" id="egreso_Cantidad" class="egreso_Cantidad" name="egreso_Cantidad" placeholder="Cantidad">
@@ -73,11 +72,11 @@
                 <div><label for="compra_Tipo">Tipo:</label></div>
                 <select id="compra_Tipo" name="compra_Tipo">
                     <option value="">---</option>
-                    <option value="consulta">Consulta</option>
-                    <option value="freelacner">Freelancer</option>
-                    <option value="empleo">Empleo</option>
-                    <option value="familia">Familia</option>
-                    <option value="regalo">Regalo</option>
+                    <option value="comida">Comida</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="transporte">Transporte</option>
+                    <option value="tecnología">Tecnología</option>
+                    <option value="diversión">Diversión</option>
                 </select>
                 <div><label for="compra_Cantidad">Cantidad: </label></div>
                 <input type="number" id="compra_Cantidad" class="compra_Cantidad" name="compra_Cantidad" placeholder="Cantidad">
@@ -112,7 +111,7 @@
                 <p>{{user.id}}</p>
             </div>
             <div>
-                <p class="total" id="total">Total: $-------</p>
+                <p class="total" id="total">Total: ${{presupuesto}}</p>
             </div>
             <div>
                 <ul class="menu" id="menu">
@@ -127,22 +126,45 @@
         </div>
         <div class="ingresos" id="ingresos">
             <h2>Ingresos</h2>
+            {% for ingreso in ingresos %}
+                <div class="registro-ingreso" id="registro-ingreso">
+                    <h3>#{{ingreso.id}}</h3>
+                    <p><strong>Tipo:</strong> {{ingreso.tipo}}</p>
+                    <p><strong>Detalles:</strong> {{ingreso.detalle}}</p>
+                    <p><strong>Precio:</strong> ${{ingreso.precio}}</p>
+                    <p><strong>Cantidad:</strong> {{ingreso.cantidad}}</p>
+                    <p><strong>Total: </strong>${{ingreso.total}}</p>
+                    <h4>{{ingreso.fecha}}</h4>
+                </div>
+            {% endfor %}
         </div>
         <div class="egresos" id="egresos">
             <h2>Egresos</h2>
-            {% for egre in egreso %}
+            {% for egreso in egresos %}
                 <div class="registro-egreso" id="registro-egreso">
-                    <p>{{egre.id}}</p>
-                    <p>{{egre.detalle}}</p>
-                    <p>{{egre.tipo}}</p>
-                    <p>{{egre.precio}}</p>
-                    <p>{{egre.cantidad}}</p>
-                    <p>{{egre.fecha}}</p>
+                    <h3>#{{egreso.id}}</h3>
+                    <p><strong>Tipo:</strong> {{egreso.tipo}}</p>
+                    <p><strong>Detalles:</strong> {{egreso.detalle}}</p>
+                    <p><strong>Precio:</strong> ${{egreso.precio}}</p>
+                    <p><strong>Cantidad:</strong> {{egreso.cantidad}}</p>
+                    <p><strong>Total: </strong>${{egreso.total}}</p>
+                    <h4>{{egreso.fecha}}</h4>
                 </div>
             {% endfor %}
         </div>
         <div class="compras" id="compras">
             <h2>Compras</h2>
+            {% for compra in compras %}
+                <div class="registro-compra" id="registro-compra">
+                    <h3>#{{compra.id}}</h3>
+                    <p><strong>Tipo:</strong> {{compra.tipo}}</p>
+                    <p><strong>Detalles:</strong> {{compra.detalle}}</p>
+                    <p><strong>Precio:</strong> ${{compra.precio}}</p>
+                    <p><strong>Cantidad:</strong> {{compra.cantidad}}</p>
+                    <p><strong>Total: </strong>${{compra.total}}</p>
+                    <h4>{{compra.fecha}}</h4>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -41,7 +41,7 @@ function cerrar(){
     const home = document.getElementById('home');
     menu.style.display="none";
     home.style.gridTemplateColumns="1fr 1fr 1fr";
-    home.style.gridTemplateRows="10% 1fr";
+    home.style.gridTemplateRows="7% 1fr";
 };
 
 function abrir(){
@@ -49,7 +49,7 @@ function abrir(){
     const home = document.getElementById('home');
 
     home.style.gridTemplateColumns="1fr 1fr 1fr 1fr";
-    home.style.gridTemplateRows="10% 1fr";
+    home.style.gridTemplateRows="7% 1fr";
     menu.style.display="block";
 }
 
