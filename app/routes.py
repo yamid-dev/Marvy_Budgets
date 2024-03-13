@@ -83,12 +83,18 @@ def home():
         datos = obtener_egreso(user_id)
         datosDos= obtener_ingreso(user_id)
         datosTres= obtener_compra(user_id)
-        total_egresos = db.session.query(Vista_total_egresos).first().total_egresos
-        #"{:,}".format(int(db.session.query(Vista_total_egresos).first().total_egresos))
-        total_ingresos = db.session.query(Vista_total_ingresos).first().total_ingresos
-        #"{:,}".format(int(db.session.query(Vista_total_ingresos).first().total_ingresos))
-        presupuesto = "{:,}".format(int(total_ingresos-total_egresos))
+        total_egresos_query = db.session.query(Vista_total_egresos).first()
+        total_egresos = total_egresos_query.total_egresos if total_egresos_query else 0
 
+        #"{:,}".format(int(db.session.query(Vista_total_egresos).first().total_egresos))
+        total_ingresos_query = db.session.query(Vista_total_ingresos).first()
+        total_ingresos = total_ingresos_query.total_ingresos if total_ingresos_query else 0
+
+        #"{:,}".format(int(db.session.query(Vista_total_ingresos).first().total_ingresos))
+        
+            
+        presupuesto = "{:,}".format(int(total_ingresos-total_egresos))
+        
         # Verificar si hay datos disponibles, si no, enviar listas vacías
         if not datos:
             datos = []
@@ -96,12 +102,8 @@ def home():
             datosDos = []
         if not datosTres:
             datosTres = []
-        if not total_egresos:
-            total_egresos="----"
-        if not total_ingresos:
-            total_ingresos="----"
-        if not total_ingresos:
-            presupuesto="----"
+        
+    
 
         return render_template('3_home.html',user=info_user, egresos=datos, ingresos=datosDos, compras=datosTres,  total_egresos=total_egresos, total_ingresos=total_ingresos, presupuesto=presupuesto)
     else:

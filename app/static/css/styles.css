@@ -69,6 +69,7 @@ header{
 }
 footer{
     grid-column: 1/-1;
+    grid-row: -1;
     padding: 0.5%;
     position: block;
     background: #161616;
@@ -101,7 +102,7 @@ footer{
     grid-column: 2/4;
 }
 #signout{
-    grid-row: 3;
+    grid-row: 2/4;
     grid-column: 2/4;
 }
 #login form, #signup form{
