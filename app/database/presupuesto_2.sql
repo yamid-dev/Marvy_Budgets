@@ -1,4 +1,7 @@
 SELECT * FROM egreso;
+SELECT * FROM ingreso;
+SELECT * FROM compra;
+SELECT * FROM usuario;
 DELETE FROM egreso WHERE egreso_Id>0;
 DELETE FROM usuario WHERE user_Id="YamidTarot";
 DROP TABLE egreso;
@@ -63,6 +66,14 @@ CREATE TABLE IF NOT EXISTS `presupuesto_2`.`ingreso` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE VIEW vista_total_egresos AS
+SELECT SUM(egreso_Total) AS total_egresos FROM egreso;
+
+CREATE VIEW vista_total_ingresos AS
+SELECT SUM(ingreso_Total) AS total_ingresos FROM ingreso;
+
+
+DROP VIEW vista_total_egresos;
 
 -- -----------------------------------------------------
 -- Table `presupuesto_2`.`egreso`
